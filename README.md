@@ -22,18 +22,28 @@
     <div>
         <h5>工作經驗</h5>
         <ol>
+            <!-- <li>
+                <div>
+                    <span>1.軟體測試工程師(2020/10-2022/2)</span>
+                </div>
+                <ul>
+                    <li>
+
+                    </li>
+                </ul>
+            </li> -->
             <li>
-                
+
             </li>
-            <li>
-                
         </ol>
     </div>
     <hr>
     <div>
         <h5>作品集</h5>
         <ol>
-            <li></li>
+            <li>
+
+            </li>
         </ol>
     </div>
 </body>
