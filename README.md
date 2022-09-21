@@ -68,7 +68,7 @@
         <h5>作品集</h5>
         <ol>
             <li>
-                <span>線上學習go</span>
+                <span><a href="http://13.56.232.122:8080/">線上學習go</a></span>
                 <ul>
                     <li>
                         利用Spring Boot框架 + Thymeleaf模板引擎 + MySql做的線上課程網站
