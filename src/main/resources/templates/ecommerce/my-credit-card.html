@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="我的信用卡頁" />
+    <meta name="author" content="Brian Chen" />
+    <title>線上學習go</title>
+    <link th:href="@{/assets/favicon.ico}" rel="icon" type="image/x-icon" />
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css}" rel="stylesheet" />
+    <link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/my_credit_card_styles.css}" rel="stylesheet" />
+</head>
+<body>
+	<!-- 導覽-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-3 px-lg-5">
+         	<h2>線上學習go</h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                	<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">課程類別</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        	<li><a class="dropdown-item" th:href="@{/}">所有課程</a></li>
+                         	<li><hr class="dropdown-divider" /></li>
+                            <li th:each="courseType : ${courseTypes}"><a class="dropdown-item" th:href="@{/ecommerce/showHomeByType(type=${courseType.id})}"><span th:text="${courseType.name}"></span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">個人資訊</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyProfile}">我的資料</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyOrder}">我的訂單</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyCreditCard}">我的信用卡</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyCourse}">我的課程</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" th:href="@{/showMyLoginPage?logout}">登出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="text-center">
+                	<a class="btn btn-outline-dark mt-auto" th:href="@{/ecommerce/showShoppingCart}">
+		                <i class="bi-cart-fill me-1"></i>
+		                購物車
+		                <span class="badge bg-dark text-white ms-1 rounded-pill" th:text="${cartCourseSize}"></span>
+		            </a>    
+	            </div>  
+            </div>
+        </div>
+    </nav>
+    <section class="py-5">
+		<div class="container d-flex justify-content-center mt-6 mb-6">
+            <div class="row g-5">
+                <div class="col-md-10">
+                    <div class="card" style="box-shadow:0.5px 0.5px 1px 1px #cccccc;">
+                        <div class="d-flex justify-content-between p-4">
+                            <div style="width:200px">
+                                <h4><b>我的信用卡</b></h4>
+                            </div>
+                            <div style="width:60px">
+                                <span th:text="${cardSize}+' 張卡'"></span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between p-4">
+                            <div style="width:135px;">
+                                <span>信用卡別</span>
+                            </div>
+                            <div style="width:220px;">
+                                <span>信用卡號</span>
+                            </div>
+                            <div style="width:150px;">
+                                <span>是否為預設</span>
+                            </div>
+                            <div style="width:110px;">
+                            </div>
+                            <div style="width:100px;">
+		                    </div>	
+                        </div>
+                        <hr class="mt-0 line">
+                        <div th:each="card : ${cards}">
+                            <div class="d-flex justify-content-between p-4">
+                                <div style="width:135px; margin-left:0px; margin-top:20px;">
+                                    <span th:text="${card.type}"></span>
+                                </div>
+                                <div style="width:215px; margin-left:6px; margin-top:20px;">
+                                    <span th:text="${card.no}"></span>
+                                </div>
+                                <div style="width:145px; margin-left:18px; margin-top:20px;">
+                                    <span th:text="${card.isDefault}"></span>
+                                </div>
+                                <div style="width:110px;" th:if="${card.isDefault} == '否'">
+                                	<div style="margin-top:0px;">
+	                                    <button class="btn-dark btn-block free-button" style="background-color: #1c1f23; margin-top:-5px; margin-bottom:8px;"; th:onclick="|window.location.href='@{/ecommerce/setDefaultCreditCard(cardId=${card.id})}'|">設為預設</button>
+	                                </div>
+	                                <div style="margin-top:0px;">
+                                    	<button class="btn-dark btn-block free-button" style="background-color: #1c1f23;" th:onclick="|window.location.href='@{/ecommerce/showMyCreditCardForm(cardId=${card.id})}'|">修改資料</button>
+                                	</div>
+                                </div>
+                                <div style="width:110px;" th:unless="${card.isDefault} == '否'">
+	                                <div style="margin-top:5px;">
+                                    	<button class="btn-dark btn-block free-button" style="background-color: #1c1f23;" th:onclick="|window.location.href='@{/ecommerce/showMyCreditCardForm(cardId=${card.id})}'|">修改資料</button>
+                                	</div>
+                                </div>
+                                <div style="width:80px; margin:20px;">
+			                    	<a th:href="@{/ecommerce/removeCreditCard(cardId=${card.id})}">
+			                    		<span class="close">&#10005;</span>
+			                    	</a>
+			                    </div>	
+                            </div>
+                            <hr class="mt-0 line">
+                        </div>    
+                    </div>
+                    <br>
+                    <a class="btn btn-outline-dark mt-auto" th:href="@{/ecommerce/showMyCreditCardForm}">
+		                新增信用卡
+		            </a>
+                </div> 
+            </div>
+		</div>
+	</section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark" style="margin-top:120px;">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; 線上學習go 2022</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	
+	<title>線上學習go</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!-- Favicon-->
+    <link th:href="@{/assets/favicon.ico}" rel="icon" type="image/x-icon" />
+	<!-- Reference Bootstrap files -->
+	<link th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet">
+	
+	<style>
+		.error {color:red}
+	</style>
+
+</head>
+
+<body>
+
+	<div>
+
+		<div id="loginbox" style="margin-top: 50px;"
+			class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
+			
+			<div class="panel panel-primary">
+
+				<div class="panel-heading">
+					<div class="panel-title">成為新會員</div>
+				</div>
+
+				<div style="padding-top: 30px" class="panel-body">
+
+					<!-- Registration Form -->
+					<form th:action="@{/register/processRegistrationForm}" 
+						  	   th:object="${crmUser}" method="POST"
+						  	   class="form-horizontal">
+
+						<!-- 使用者名稱 -->
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
+							<input type="text" th:field="*{username}" placeholder="使用者名稱 (*)" class="form-control" />
+						</div>
+
+						<div th:if="${#fields.hasErrors('username')}"
+							style="margin-bottom: 25px" class="text-danger">
+							<ul>
+							  	<li th:each="err : ${#fields.errors('username')}" th:text="${err}" />
+							</ul>						
+						</div>
+						<!-- Check for user error -->
+						<div th:if="${userError}" style="margin-bottom: 25px" class="text-danger">
+							<ul>
+							  	<li th:text="${userError}" />
+							</ul>
+						</div>
+						
+
+						<!-- 密碼 -->
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> 
+							<input type="password" th:field="*{password}" placeholder="密碼 (*)" class="form-control" th:errorclass="fieldError" />
+						</div>
+						<div th:if="${#fields.hasErrors('password')}"
+							style="margin-bottom: 25px" class="text-danger">
+							<ul>
+							  	<li th:each="err : ${#fields.errors('password')}" th:text="${err}" />
+							</ul>						
+						</div>
+						
+						<!-- 確認密碼 -->
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> 
+							<input type="password" th:field="*{matchingPassword}" placeholder="確認密碼 (*)" class="form-control" th:errorclass="fieldError" />
+						</div>
+						<div th:if="${#fields.hasErrors('matchingPassword')}"
+							style="margin-bottom: 25px" class="text-danger">
+							<ul>
+							  	<li th:each="err : ${#fields.errors('matchingPassword')}" th:text="${err}" />
+							</ul>						
+						</div>
+					
+						
+						<!-- 全名 -->
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
+							<input type="text" th:field="*{fullName}" placeholder="全名 (*)" class="form-control" th:errorclass="fieldError" />
+						</div>
+						<div th:if="${#fields.hasErrors('fullName')}"
+							style="margin-bottom: 25px" class="text-danger">
+							<ul>
+							  	<li th:each="err : ${#fields.errors('fullName')}" th:text="${err}" />
+							</ul>						
+						</div>
+
+						<!-- 信箱 -->
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
+							<input type="text" th:field="*{email}" placeholder="信箱 (*)" class="form-control" th:errorclass="fieldError" />
+						</div>
+						<div th:if="${#fields.hasErrors('email')}"
+							style="margin-bottom: 25px" class="text-danger">
+							<ul>
+							  	<li th:each="err : ${#fields.errors('email')}" th:text="${err}" />
+							</ul>						
+						</div>
+						<!-- Check for email error -->
+						<div th:if="${emailError}"  style="margin-bottom: 25px" class="text-danger">
+							<ul>
+							  	<li th:text="${emailError}" />
+							</ul>
+						</div>
+						
+						
+						<!-- 註冊按鈕 -->
+						<div style="margin-top: 10px" class="form-group">						
+							<div class="col-sm-6 controls">
+								<button type="submit" class="btn btn-primary">註冊</button>
+							</div>
+						</div>
+						
+					</form>
+
+				</div>
+
+			</div>
+		<div>
+			<a th:href="@{/showMyLoginPage}" class="btn btn-success" role="button" aria-pressed="true">回登入頁</a>
+		</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

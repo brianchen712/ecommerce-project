@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="首頁" />
+    <meta name="author" content="Brian Chen" />
+    <title>線上學習go</title>
+    <link th:href="@{/assets/favicon.ico}" rel="icon" type="image/x-icon" />
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css}" rel="stylesheet" />
+    <link th:href="@{/css/home_styles.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- 導覽-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+         	<h2>線上學習go</h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                	<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">課程類別</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        	<li><a class="dropdown-item" th:href="@{/}">所有課程</a></li>
+                         	<li><hr class="dropdown-divider" /></li>
+                            <li th:each="courseType : ${courseTypes}"><a class="dropdown-item" th:href="@{/ecommerce/showHomeByType(type=${courseType.id})}"><span th:text="${courseType.name}"></span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">個人資訊</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        	<li><a class="dropdown-item" th:href="@{/ecommerce/showMyProfile}">我的資料</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyOrder}">我的訂單</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyCreditCard}">我的信用卡</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyCourse}">我的課程</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" th:href="@{/showMyLoginPage?logout}">登出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="text-center">
+                	<a class="btn mt-auto" th:href="@{/ecommerce/showShoppingCart}">
+		                <i class="bi-cart-fill me-1"></i>
+		                購物車
+		                <span class="badge bg-dark text-white ms-1 rounded-pill" th:text="${cartCourseSize}"></span>
+		            </a>    
+	            </div> 
+            </div>
+        </div>
+    </nav>
+    <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">趕快挑選您喜歡的課程吧!!</h1>
+                <p class="lead fw-normal text-white-50 mb-0">這裡有各種類型的課程供您挑選</p>
+            </div>
+        </div>
+    </header>
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div class="col mb-5" th:each="course : ${courses}">
+                    <div class="card h-100">
+                    	<div th:if="${course.discountPrice} != null">
+	                    	<!-- Sale badge-->
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                        </div>
+                        <a th:href="@{/ecommerce/showDetail(courseId=${course.id})}">
+                        	<!-- Course image-->
+                        	<img class="card-img-top" th:src="*{'data:image/jpeg;base64,'+{course.image}}" style="width: 269px;height: 210px;" alt="" />
+                        </a>
+                        <!-- Course details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Course name-->
+                                <h5 class="fw-bolder"><span th:text="${course.name}"></span></h5>
+                                <!-- Course reviews-->
+                                <span th:if="${#maps.containsKey(courseReviewMap, course.id)}" th:text="'評分 :' + ${courseReviewMap.get(course.id).averageRating} + '(' + ${courseReviewMap.get(course.id).reviewCount} + ')'"></span>
+ 								<!-- Course students-->
+ 								<div class="card-footer p-5 pt-0 border-top-0 bg-transparent">
+ 									<span th:if="${#maps.containsKey(courseStudentMap, course.id)}" th:text="'學生 :' + ${courseStudentMap.get(course.id)} + '人'"></span>
+                                </div>
+                                <!-- Course price-->
+                                <div th:if="${course.discountPrice} != null">
+	                                <span class="text-muted text-decoration-line-through" th:text="'NT$ '+${course.price}"></span>
+	                                <br>
+	                                <span th:text="'NT$ '+${course.discountPrice}"></span>
+                                </div>
+                                <div th:unless="${course.discountPrice} != null">
+	                                <span th:text="'NT$ '+${course.price}"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Course actions-->
+                        <div th:if="${#maps.containsKey(orderCourseIdMap, course.id)}" class="card-footer p-5 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/ecommerce/showCourseContent(courseId=${course.id})}">開始上課</a></div>
+                        </div>
+                        <div th:unless="${#maps.containsKey(orderCourseIdMap, course.id)}">             
+	                        <div th:if="${#maps.containsKey(cartCourseIdMap, course.id)}" class="card-footer p-5 pt-0 border-top-0 bg-transparent">
+	                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/ecommerce/showShoppingCart}">前往購物車</a></div>
+	                        </div> 
+	                        <div th:unless="${#maps.containsKey(cartCourseIdMap, course.id)}" class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+	                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/ecommerce/addShoppingCart(pageName=Home,courseId=${course.id})}">加入購物車</a></div>
+	                        	<br>
+	                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/ecommerce/addAndShowShoppingCart(courseId=${course.id})}">立即購買</a></div>
+	                        </div>
+	                    </div>
+	                 </div>    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; 線上學習go 2022</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="購物車" />
+    <meta name="author" content="Brian Chen" />
+    <title>線上學習go</title>
+    <link th:href="@{/assets/favicon.ico}" rel="icon" type="image/x-icon" />
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css}" rel="stylesheet" />
+    <link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/shoppingCart_styles.css}" rel="stylesheet" />
+</head>
+<body>
+	<!-- 導覽-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-3 px-lg-5">
+         	<h2>線上學習go</h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                	<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">課程類別</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        	<li><a class="dropdown-item" th:href="@{/}">所有課程</a></li>
+                         	<li><hr class="dropdown-divider" /></li>
+                            <li th:each="courseType : ${courseTypes}"><a class="dropdown-item" th:href="@{/ecommerce/showHomeByType(type=${courseType.id})}"><span th:text="${courseType.name}"></span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">個人資訊</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyProfile}">我的資料</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyOrder}">我的訂單</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyCreditCard}">我的信用卡</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyCourse}">我的課程</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" th:href="@{/showMyLoginPage?logout}">登出</a></li>
+                        </ul>
+                    </li>
+                </ul> 
+            </div>
+        </div>
+    </nav>
+    <section class="py-5">
+        <div class="card">
+		    <div class="row">
+		        <div class="" th:classappend="${cartCoursesSize} > 0 ? 'col-md-8 cart' : 'col-md-20 cart'">
+		            <div class="title">
+		                <div class="row">
+		                    <div class="col"><h4><b>購物車</b></h4></div>
+		                    <div class="col align-self-center text-right text-muted"><span th:text="${cartCoursesSize}+' 門課'"></span></div>
+		                </div>
+		            </div>
+		            <div class="row border-top border-bottom">
+		                <div class="row main align-items-center">
+		                    <div class="col-2"></div>
+		                    <div class="col">
+		                        <div class="row text-dark"><span>課程名稱</span></div>
+		                    </div>
+		                    <div class="col">
+								<div class="row text-dark"><span>課程金額</span></div>
+		                    </div>
+		                    <div class="col">
+		                    </div>	
+		                </div>
+		            </div>    
+		            <div class="row border-top border-bottom" th:each="cartCourse : ${cartCourses}">
+		                <div class="row main align-items-center">
+		                    <div class="col-2"><img class="img-fluid" th:src="*{'data:image/jpeg;base64,'+{cartCourse.image}}"></div>
+		                    <div class="col">
+		                        <div class="row text-dark"><span th:text="${cartCourse.name}"></span></div>
+		                    </div>
+		                    <div class="col">
+		                    	<div th:if="${cartCourse.discountPrice} != null">
+	                               <div class="row text-black-50 text-decoration-line-through"><span th:text="'NT$ '+${cartCourse.price}"></span></div>
+		                    		<div class="row text-dark"><span th:text="'NT$ '+${cartCourse.discountPrice}"></span></div>
+                                </div>
+                                <div th:unless="${cartCourse.discountPrice} != null">
+	                                <div class="row text-dark"><span th:text="'NT$ '+${cartCourse.price}"></span></div>
+                                </div>
+		                    </div>
+		                    <div class="col">
+		                    	<a th:href="@{/ecommerce/removeShoppingCart(courseId=${cartCourse.id})}">
+		                    		<span class="close">&#10005;</span>
+		                    	</a>
+		                    </div>	
+		                </div>
+		            </div>
+		            <div class="back-to-home"><a th:href="@{/}">&leftarrow;</a><span class="text-muted">繼續購物</span></div>
+		        </div>
+		        <div th:if="${cartCoursesSize} != 0" class="col-md-4 summary">
+		            <div><h5><b></b></h5></div>
+		            <div class="row">
+		                <div class="col" style="padding-left:0;">課程原金額</div>
+		                <div class="col text-right"><span th:text="'NT$ '+${cartCoursesPrice}"></span></div>
+		            </div>
+		            <div class="row">
+		                <div class="col" style="padding-left:0;">折扣</div>
+		                <div class="col text-right"><span th:text="'- NT$ '+${cartDiscount}"></span></div>
+		            </div>
+		            <hr>
+		            <div class="row">
+		                <div class="col"  style="padding-left:0;">總金額</div>
+		                <div class="col text-right"><span th:text="'NT$ '+${cartCoursesDiscountPrice}"></span></div>
+		            </div>
+		            <button class="btn" th:onclick="|window.location.href='@{/ecommerce/showCheckout}'|">去買單</button>
+		        </div>
+		    </div>
+		</div>
+	</section>
+	<!-- Footer-->
+    <footer class="py-5 bg-dark" style="margin-top:300px;">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; 線上學習go 2022</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>	
+</body>
+</html>

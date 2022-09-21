@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="訂單頁" />
+    <meta name="author" content="Brian Chen" />
+    <title>線上學習go</title>
+    <link th:href="@{/assets/favicon.ico}" rel="icon" type="image/x-icon" />
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css}" rel="stylesheet" />
+    <link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/my_order_styles.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- 導覽-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+         	<h2>線上學習go</h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                	<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">課程類別</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        	<li><a class="dropdown-item" th:href="@{/}">所有課程</a></li>
+                         	<li><hr class="dropdown-divider" /></li>
+                            <li th:each="courseType : ${courseTypes}"><a class="dropdown-item" th:href="@{/ecommerce/showHomeByType(type=${courseType.id})}"><span th:text="${courseType.name}"></span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">個人資訊</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        	<li><a class="dropdown-item" th:href="@{/ecommerce/showMyProfile}">我的資料</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyOrder}">我的訂單</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyCreditCard}">我的信用卡</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyCourse}">我的課程</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" th:href="@{/showMyLoginPage?logout}">登出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="text-center">
+                	<a class="btn1 mt-auto" th:href="@{/ecommerce/showShoppingCart}">
+		                <i class="bi-cart-fill me-1"></i>
+		                購物車
+		                <span class="badge bg-dark text-white ms-1 rounded-pill" th:text="${cartCourseSize}"></span>
+		            </a>    
+	            </div> 
+            </div>
+        </div>
+    </nav>
+    <!-- Section-->
+    <section class="py-5">
+    	<div class="card">
+		    <div class="row">
+		        <div class="col-md-20 cart">
+		            <div class="title">
+		                <div class="row">
+		                    <div class="col"><h4><b>我的訂單</b></h4></div>
+		                    <div class="col align-self-center text-right text-muted"><span th:text="${orderSize}+' 筆訂單'"></span></div>
+		                </div>
+		            </div>
+		            <div class="row border-top border-bottom">
+		                <div class="row main align-items-center">
+		                    <div class="col">
+		                        <div class="row text-dark"></div>
+		                    </div>
+		                    <div class="col">
+		                        <div class="row text-dark"><span>購買時間</span></div>
+		                    </div>
+		                    <div class="col">
+		                        <div class="row text-dark"><span>總金額</span></div>
+		                    </div>
+		                    <div class="col">
+		                        <div class="row text-dark"><span>付款類型</span></div>
+		                    </div>
+		                    <div class="col">
+		                        <span></span>
+		                    </div>	
+		                </div>
+		            </div>    
+		            <div class="row border-top border-bottom" th:each="order : ${orders}">
+		                <div class="row main align-items-center">
+		                    <div class="col">
+		                        <div class="row text-dark"><span th:text="${order.courseSize}"></span></div>
+		                    </div>
+		                    <div class="col">
+		                        <div class="row text-dark"><span th:text="${order.purchaseDate}"></span></div>
+		                    </div>
+		                    <div class="col">
+		                        <div class="row text-dark"><span th:text="${order.amount}"></span></div>
+		                    </div>
+		                    <div class="col">
+		                        <div class="row text-dark"><span th:text="${order.creditCard}"></span></div>
+		                    </div>
+		                    <div class="col">
+		                    	<div class="row text-dark">
+		                        	<button class="btn mt-auto" th:onclick="|window.location.href='@{/ecommerce/showMyOrderDetail(orderId=${order.id})}'|">查看明細</button>
+		                        </div>
+		                    </div>	
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		
+				
+				
+				
+				
+				
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark" style="margin-top:300px;">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; 線上學習go 2022</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

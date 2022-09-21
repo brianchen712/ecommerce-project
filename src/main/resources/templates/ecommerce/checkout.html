@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="結帳頁" />
+    <meta name="author" content="Brian Chen" />
+    <title>線上學習go</title>
+    <link th:href="@{/assets/favicon.ico}" rel="icon" type="image/x-icon" />
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css}" rel="stylesheet" />
+    <link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/checkout_styles.css}" rel="stylesheet" />
+	<script type="text/javascript" th:src="@{/js/common.js}"></script>
+</head>
+<body>
+	<!-- 導覽-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-3 px-lg-5">
+         	<h2>線上學習go</h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                	<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">課程類別</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        	<li><a class="dropdown-item" th:href="@{/}">所有課程</a></li>
+                         	<li><hr class="dropdown-divider" /></li>
+                            <li th:each="courseType : ${courseTypes}"><a class="dropdown-item" th:href="@{/ecommerce/showHomeByType(type=${courseType.id})}"><span th:text="${courseType.name}"></span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">個人資訊</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyProfile}">我的資料</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyOrder}">我的訂單</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyCreditCard}">我的信用卡</a></li>
+                            <li><a class="dropdown-item" th:href="@{/ecommerce/showMyCourse}">我的課程</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" th:href="@{/showMyLoginPage?logout}">登出</a></li>
+                        </ul>
+                    </li>
+                </ul> 
+            </div>
+        </div>
+    </nav>
+    <section class="py-5">
+		<div class="container d-flex justify-content-center mt-5 mb-5">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="card" style="box-shadow:0.5px 0.5px 1px 1px #cccccc;">
+                        <div class="d-flex justify-content-between p-3">
+                            <div class="d-flex flex-column">
+                                <span>課程原金額</span>
+                            </div>
+                            <div class="mt-1">
+                                <span th:text="'NT$ '+${cartCoursesPrice}"></span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>折扣</span>
+                                <span th:text="'- NT$ '+${cartDiscount}"></span>
+                            </div>
+                        </div>
+                        <hr class="mt-0 line">
+                        <div class="p-3 d-flex justify-content-between">
+                            <div class="d-flex flex-column">
+                                <span>總金額</span>
+                            </div>
+                            <span th:text="'NT$ '+${cartCoursesDiscountPrice}"></span>
+                        </div>
+                    </div>
+                     <div class="back-to-home"><a th:href="@{/ecommerce/showShoppingCart}">&leftarrow;</a><span class="text-muted">回購物車</span></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card" style="box-shadow:0.5px 0.5px 1px 1px #cccccc;">
+                                <div class="card-header p-0">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-light btn-block text-left p-3 rounded-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <span>信用卡付款</span>
+                                                <div class="icons">
+                                                    <img src="https://i.imgur.com/2ISgYja.png" width="30">
+                                                    <img src="https://i.imgur.com/W1vtnOV.png" width="30">
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <form th:action="@{/ecommerce/checkout}" 
+                                    th:object="${checkoutForm}" method="POST">
+                                    <div th:if="*{id} == 0">
+                                        <div class="card-body payment-card-body">
+                                            <input type="hidden" th:field="*{id}"/>
+                                            <span class="font-weight-normal card-text">卡號</span>
+                                            <div class="input">
+                                                <i class="fa fa-credit-card"></i>
+                                                <input type="text" th:field="*{cardNo}" class="form-control" placeholder="0000000000000000">
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('cardNo')}"
+                                                    style="margin-bottom: 25px" class="text-danger">
+                                                <ul>
+                                                <li th:each="err : ${#fields.errors('cardNo')}" th:text="${err}" />
+                                                </ul>						
+                                            </div>
+                                            <!-- Check for card error -->
+											<div th:if="${cardError}" style="margin-bottom: 25px" class="text-danger">
+												<ul>
+												  	<li th:text="${cardError}" />
+												</ul>
+											</div>  
+                                            <div class="row mt-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <span class="font-weight-normal card-text">到期日</span>
+                                                    <div class="input">
+                                                        <i class="fa fa-calendar"></i>
+                                                        <input type="text" id="expiredDate" th:field="*{expiredDate}" class="form-control" placeholder="MM/YY" th:onkeyup="changeDateFormat1(this.value)">
+                                                    </div>
+                                                    <div th:if="${#fields.hasErrors('expiredDate')}"
+                                                            style="margin-bottom: 25px" class="text-danger">
+                                                        <ul>
+                                                        <li th:each="err : ${#fields.errors('expiredDate')}" th:text="${err}" />
+                                                        </ul>						
+                                                    </div> 
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div>
+	                                                	<span style="color:#4F4F4F; font-size:15px; margin-left: 3px;">安全碼</span>
+	                                                	<button class="circle black" type="button" th:onclick="openPopup()">
+	                                                		<div class="text">?</div>
+	                                                	</button>
+				                                    </div>
+                                                    <div class="input">
+                                                        <i class="fa fa-lock"></i>
+                                                        <input type="text" th:field="*{cvv}" class="form-control" placeholder="000">
+                                                    </div>
+                                                    <div th:if="${#fields.hasErrors('cvv')}"
+                                                            style="margin-bottom: 25px" class="text-danger">
+                                                        <ul>
+                                                        <li th:each="err : ${#fields.errors('cvv')}" th:text="${err}" />
+                                                        </ul>						
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                            <div class="p-3">
+                                                <button class="btn-dark btn-block free-button" style="background-color: #1c1f23;" type="submit" th:onclick="changeExpiredDate()">結帳</button>  
+                                            </div>
+                                            <span class="text-muted certificate-text"><i class="fa fa-lock"></i> 您的交易透過SSL憑證進行保護</span>
+                                        </div>
+                                    </div>
+                                    <div th:unless="*{id} == 0">
+                                        <div class="card-body payment-card-body">
+                                            <input type="hidden" th:field="*{id}"/>
+                                            <span class="font-weight-normal card-text">卡號</span>
+                                            <a class="btn btn-outline-dark mt-auto" th:href="@{/ecommerce/showCheckoutV2}" style="margin-left:120px; margin-bottom:5px;">
+								                輸入新卡片
+								            </a>
+                                            <div class="input">
+                                                <i class="fa fa-credit-card"></i>
+                                                <input type="text" th:field="*{cardNo}" class="form-control" placeholder="0000000000000000" readonly>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('cardNo')}"
+                                                    style="margin-bottom: 25px" class="text-danger">
+                                                <ul>
+                                                <li th:each="err : ${#fields.errors('cardNo')}" th:text="${err}" />
+                                                </ul>						
+                                            </div> 
+                                            <!-- Check for card error -->
+											<div th:if="${cardError}" style="margin-bottom: 25px" class="text-danger">
+												<ul>
+												  	<li th:text="${cardError}" />
+												</ul>
+											</div>  
+                                            <div class="row mt-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <span class="font-weight-normal card-text">到期日</span>
+                                                    <div class="input">
+                                                        <i class="fa fa-calendar"></i>
+                                                        <input type="text" th:field="*{expiredDate}" class="form-control" placeholder="MM/YY" readonly>
+                                                    </div>
+                                                    <div th:if="${#fields.hasErrors('expiredDate')}"
+                                                            style="margin-bottom: 25px" class="text-danger">
+                                                        <ul>
+                                                        <li th:each="err : ${#fields.errors('expiredDate')}" th:text="${err}" />
+                                                        </ul>						
+                                                    </div> 
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="font-weight-normal card-text">安全碼</span>
+                                                    <div class="input">
+                                                        <i class="fa fa-lock"></i>
+                                                        <input type="text" th:field="*{cvv}" class="form-control" placeholder="000" readonly>
+                                                    </div>
+                                                    <div th:if="${#fields.hasErrors('cvv')}"
+                                                            style="margin-bottom: 25px" class="text-danger">
+                                                        <ul>
+                                                        <li th:each="err : ${#fields.errors('cvv')}" th:text="${err}" />
+                                                        </ul>						
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                            <div class="p-3">
+                                                <button class="btn-dark btn-block free-button" style="background-color: #1c1f23;" type="submit" th:onclick="changeExpiredDate()">結帳</button>  
+                                            </div>
+                                            <span class="text-muted certificate-text"><i class="fa fa-lock"></i> 您的交易透過SSL憑證進行保護</span>
+                                        </div>
+                                    </div>
+                                </form>    
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+		</div>
+	</section>
+	<div class="popup" id="popup">
+        <h2>安全碼</h2>
+        <img th:src="@{/assets/creditCard.jpg}">
+        <div>CVV號碼(安全驗證碼)是信用卡背面簽名區旁邊的3位數字</div>
+        <button type="button" onclick="closePopup()">ok</button>
+    </div>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; 線上學習go 2022</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
