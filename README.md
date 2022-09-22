@@ -1,6 +1,6 @@
 <body>
     <div>
-        <h2 style="display : inline; margin-right: 20px;">作品名稱: 線上學習go <span>於2022/09完成</span> </h2>
+        <h2>作品名稱: 線上學習go <span  margin-right: 20px; ">於2022/09完成</span> </h2>
     </div>
     <ol>
         <li>
