@@ -4,7 +4,7 @@
     </div>
     <ol>
         <li>
-            <a href="http://13.56.232.122:8080/">作品連結</a>
+            <a href="http://13.56.232.122:8080/">線上學習go</a>
             <span style="margin-right: 20px; font-size: 15px; font-weight: normal;">於2022/09完成</span> 
         </li>
         <br>
