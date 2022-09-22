@@ -1,10 +1,11 @@
 <body>
     <div>
-        <h2>作品名稱: 線上學習go <span style="margin-right: 20px; font-size: 15px; font-weight: normal;">於2022/09完成</span> </h2>
+        <h2>作品名稱: 線上學習go</h2>
     </div>
     <ol>
         <li>
             <a href="http://13.56.232.122:8080/">作品連結</a>
+            <span style="margin-right: 20px; font-size: 15px; font-weight: normal;">於2022/09完成</span> 
         </li>
         <br>
         <li>
