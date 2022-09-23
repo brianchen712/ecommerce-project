@@ -294,11 +294,10 @@
                         </li>
                         <h4>對課程評分</h4>
                         <li>
-                            點選開始上課，可進入課程內容頁
+                            點選開始上課，可進入課程內容頁，跟首頁、課程明細頁下方的開始上課按鈕一樣效果
                             <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/courseContent1.png">
                             <br>
                             <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/courseContent2.png">
-                            *跟首頁、課程明細頁下方的開始上課按鈕一樣效果
                         </li>
                         <li>
                             移至畫面下方，可對該課程填寫評論
