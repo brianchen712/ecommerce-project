@@ -102,7 +102,7 @@
                                     <br>
                                     <br>
                                     <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/detailShopping2.png">
-                                    *可點選加入購物車按鈕或立即購買，點選後續內容請參照(1)(2)
+                                    *可點選加入購物車按鈕或立即購買，點選後顯示內容請參照1、2
                                     <br>
                                     <br>
                                     移至畫面下方，會顯示該講師開的其他課程，若尚未加入購物車會顯示加入購物車及立即購買按鈕，反之則顯示前往購物車按鈕
@@ -136,7 +136,7 @@
                             <br>
                             <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/checkout4.png">
                             <br>
-                            *點選選單旁邊的線上學習go，可回到首頁，每個頁面的線上學習go點擊後皆有此動作
+                            *點選選單旁邊的線上學習go，可回到首頁，每個頁面的線上學習go點擊後皆會跳轉至首頁
                         </li>
                         <li>
                             <div>點選回首頁</div>
