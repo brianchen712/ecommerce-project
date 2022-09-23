@@ -164,7 +164,7 @@
                              <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/frontend1.png">
                              <br>
                              畫面顯示前端課程
-                             <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/frontend1.png">
+                             <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/frontend2.png">
                          </li>
                          <br>
                          <h4>資料庫</h4>
