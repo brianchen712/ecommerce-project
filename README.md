@@ -25,7 +25,34 @@
         <li>
             作品功能介紹: 
             <ol type="a">
-                <li>註冊/登入功能</li>
+                <li>
+                    <h3>註冊/登入功能</h3>
+                    <ul>
+                        <h4>註冊功能</h4>
+                        <li>
+                            填寫欄位
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/registration1.png">
+                            *點選註冊按鈕，檢核所有欄位是否填寫，密碼、確認密碼是否一致，以及信箱格式是否正確
+                        </li>
+                        <br>
+                        <li>
+                            欄位資料沒問題，按下註冊後，可註冊成功
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/registration2.png">
+                            *若後來不想註冊，可點選回登入頁
+                        </li>
+                        <br>
+                        <li>
+                            完成註冊，會跳轉至註冊成功畫面
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/registration3.png">
+                        </li>
+                        <h4>登入功能</h4>
+                        <li>
+                            可使用註冊好的帳號、密碼進行登入，可成功進入首頁
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/signIn1.png">
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/signIn2.png">
+                        </li>
+                    </ul>
+                </li>
                 <li>購物功能</li>
                 <li>我的資料</li>
                 <li>我的訂單</li>
