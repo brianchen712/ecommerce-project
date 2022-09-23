@@ -18,7 +18,7 @@
                 <li>使用Spring Security進行使用者登入、登出的處理</li>
                 <li>使用Spring AOP紀錄LOG資訊</li>
                 <li>使用Spring Data JPA 存取DB資料</li>
-                <li>使用模板引擎Thymeleaf，並使用網路上的bootstrap template撰寫網站畫面</li>
+                <li>使用模板引擎Thymeleaf，並使用網路上的Bootstrap Template撰寫網站畫面</li>
             </ul>
         </li>
         <br>
