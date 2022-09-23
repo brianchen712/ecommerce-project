@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="明細頁" />
+        <meta name="description" content="課程明細頁" />
         <meta name="author" content="" />
         <title>線上學習go</title>
         <!-- Favicon-->
@@ -17,7 +17,7 @@
         <!-- 導覽-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <h2>線上學習go</h2>
+                <h2><a style="color: #212529; text-decoration: none; font-weight: 400;" th:href="@{/}">線上學習go</a></h2>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -26,7 +26,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         	<li><a class="dropdown-item" th:href="@{/}">所有課程</a></li>
                          	<li><hr class="dropdown-divider" /></li>
-                             <li th:each="courseType : ${courseTypes}"><a class="dropdown-item" th:href="@{/ecommerce/showHomeByType(type=${courseType.id})}"><span th:text="${courseType.name}"></span></a></li>
+                            <li th:each="courseType : ${courseTypes}"><a class="dropdown-item" th:href="@{/ecommerce/showHomeByType(type=${courseType.id})}"><span th:text="${courseType.name}"></span></a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

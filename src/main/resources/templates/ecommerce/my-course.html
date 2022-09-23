@@ -17,7 +17,7 @@
     <!-- 導覽-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
-         	<h2>線上學習go</h2>
+         	<h2><a style="color: #212529; text-decoration: none; font-weight: 400;" th:href="@{/}">線上學習go</a></h2>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -55,7 +55,8 @@
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">趕快點選您想要上的課程吧!!</h1>
+            	<h1 class="display-4 fw-bolder" th:if="${#lists.size(myCourses) == 0}">趕快去首頁購買課程吧!!</h1>
+                <h1 class="display-4 fw-bolder" th:unless="${#lists.size(myCourses) == 0}">趕快點選您想要上的課程吧!!</h1>
             </div>
         </div>
     </header>
@@ -76,8 +77,6 @@
                                 <h5 class="fw-bolder"><span th:text="${myCourse.name}"></span></h5>
                             </div>
                         </div>
-                        <!-- Course reviews-->
- 						<!-- Course students-->
                         <!-- Course actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/ecommerce/showCourseContent(courseId=${myCourse.id})}">開始上課</a></div>
@@ -88,7 +87,7 @@
         </div>
     </section>
     <!-- Footer-->
-    <footer class="py-5 bg-dark" style="margin-top:140px;">
+    <footer class="py-5 bg-dark" style="margin-top:250px;">
         <div class="container"><p class="m-0 text-center text-white">Copyright &copy; 線上學習go 2022</p></div>
     </footer>
     <!-- Bootstrap core JS-->
