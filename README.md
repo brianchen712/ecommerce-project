@@ -26,7 +26,7 @@
             作品功能介紹: 
             <ol type="a">
                 <li>
-                    <h3>註冊/登入功能</h3>
+                    <h3>註冊/登入/登出功能</h3>
                     <ul>
                         <h4>註冊功能</h4>
                         <li>
@@ -50,6 +50,12 @@
                             可使用註冊好的帳號、密碼進行登入，可成功進入首頁
                             <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/signIn1.png">
                             <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/signIn2.png">
+                        </li>
+                        <h4>登出功能</h4>
+                        <li>
+                            點選首頁->個人資訊->登出，即可成功登出
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/signOut1.png">
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/signOut2.png">
                         </li>
                     </ul>
                 </li>
