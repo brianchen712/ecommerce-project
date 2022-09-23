@@ -285,9 +285,37 @@
                     <h4>我的課程</h4>
                     <ul>
                         <h4>查看課程</h4>
-                        <li></li>
+                        <li>
+                            點選個人資料->我的課程
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/myCourse1.png">
+                            <br>
+                            進入我的課程頁，會顯示購買過的課程
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/myCourse2.png">
+                        </li>
                         <h4>對課程評分</h4>
-                        <li></li>
+                        <li>
+                            點選開始上課，可進入課程內容頁
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/courseContent1.png">
+                            <br>
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/courseContent2.png">
+                            *跟首頁、課程明細頁下方的開始上課按鈕一樣效果
+                        </li>
+                        <li>
+                            移至畫面下方，可對該課程填寫評論
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/courseContent3.png">
+                        </li>
+                        <li>
+                            填寫完畢後，按下送出
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/courseContent4.png">
+                        </li>
+                        <li>
+                            畫面下方會顯示剛儲存的評論
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/courseContent5.png">
+                        </li>
+                        <li>
+                            回到首頁，課程也會多一個評分
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/homeHasRating.png">
+                        </li>
                     </ul>
                 </li>
             </ol>
