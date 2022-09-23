@@ -18,7 +18,7 @@
                 <li>使用Spring Security進行使用者登入、登出的處理</li>
                 <li>使用Spring AOP紀錄LOG資訊</li>
                 <li>使用Spring Data JPA 存取DB資料</li>
-                <li>使用模板引擎Thymeleaf並使用網路上的bootstrap template撰寫網站畫面</li>
+                <li>使用模板引擎Thymeleaf，並使用網路上的bootstrap template撰寫網站畫面</li>
             </ul>
         </li>
         <br>
@@ -32,12 +32,14 @@
                         <li>
                             填寫欄位
                             <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/registration1.png">
+                            <br>
                             *點選註冊按鈕，檢核所有欄位是否填寫，密碼、確認密碼是否一致，以及信箱格式是否正確
                         </li>
                         <br>
                         <li>
                             欄位資料沒問題，按下註冊後，可註冊成功
                             <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/registration2.png">
+                            <br>
                             *若後來不想註冊，可點選回登入頁
                         </li>
                         <br>
@@ -185,7 +187,7 @@
                      </ul>
                 </li>
                 <li>
-                    我的資料
+                    <h4>我的資料</h4>
                     <ul>
                         <li>
                             點選個人資訊->我的資料
@@ -207,9 +209,87 @@
                         </li>
                     </ul>
                 </li>            
-                <li>我的訂單</li>
-                <li>我的信用卡</li>
-                <li>我的課程</li>
+                <li>
+                    <h4>我的訂單</h4>
+                    <ul>
+                        <li>
+                            點選個人資訊->我的訂單
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/myOrder1.png">
+                        </li>
+                        <li>
+                            我的訂單頁會顯示結帳後產生的訂單
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/myOrder2.png">
+                        </li>
+                        <li>
+                            點選查看明細，可以查看購買課程清單
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/myOrder3.png">
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>我的信用卡</h4>
+                    <ul>
+                        <h4>查看信用卡</h4>
+                        <li>
+                            點選個人資料->我的信用卡
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/myCard1.png">
+                            <br>
+                            會顯示目前擁有的信用卡
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/myCard2.png">
+                            <br>
+                            *第一次購物使用的信用卡會自動設成預設卡片，以後購物會自動帶入該卡片資料
+                        </li>
+                        <h4>新增信用卡</h4>
+                        <li>
+                            點選新增信用卡
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/addCard1.png">
+                            <br>
+                            進入新增信用卡畫面，新增卡片資訊後，按下儲存
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/addCard2.png">
+                            會回到我的信用卡頁面，並顯示剛才新增的卡片資訊
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/addCard3.png">
+                        </li>
+                        <h4>更換預設卡片</h4>
+                        <li>
+                            點選設成預設
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/defaultCard1.png">
+                            <br>
+                            卡片是否為預設顯示為是，代表此卡片已成為預設卡片
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/defaultCard2.png">
+                        </li>
+                        <h4>修改信用卡</h4>
+                        <li>
+                            點選修改資料
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/modifyCard1.png">
+                            <br>
+                            進入修改信用卡畫面，修改卡片資料後，按下儲存
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/modifyCard2.png">
+                            <br>
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/modifyCard3.png">
+                            <br>
+                            回到我的信用卡畫面，再點選該資料，會顯示修改後的資料內容
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/modifyCard4.png">
+                            <br>
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/modifyCard5.png">
+                        </li>
+                        <h4>移除信用卡</h4>
+                        <li>
+                            對卡片按下x，即可移除卡片
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/removeCard1.png">
+                            <br>
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/removeCard2.png">
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>我的課程</h4>
+                    <ul>
+                        <h4>查看課程</h4>
+                        <li></li>
+                        <h4>對課程評分</h4>
+                        <li></li>
+                    </ul>
+                </li>
             </ol>
         </li>
     </ol>
