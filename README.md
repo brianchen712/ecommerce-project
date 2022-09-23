@@ -55,7 +55,7 @@
                         <li>
                             點選首頁->個人資訊->登出，即可成功登出
                             <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/signOut1.png">
-                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/signOut2.png">
+                            <img src="https://github.com/brianchen712/ecommerce-project/blob/master/Screenshots/singOut2.png">
                         </li>
                     </ul>
                 </li>
