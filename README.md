@@ -5,7 +5,10 @@
     <ol>
         <li>
             <a href="http://13.56.232.122:8080/">線上學習go</a>
-            <span style="margin-right: 20px; font-size: 15px; font-weight: normal;">於2022/09完成</span> 
+            <span style="margin-right: 20px; font-size: 15px; font-weight: normal;">於2022/09完成</span>
+            <div>
+                線上學習go的講師跟課程資料有用後台管理，技術是使用Spring Boot + React.js + MySQL，相關原始碼在<a href="https://github.com/brianchen712/ecommerce-data">這裡ˋ</a>
+            </div>
         </li>
         <br>
         <li>
