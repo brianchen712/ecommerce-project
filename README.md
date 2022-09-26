@@ -9,7 +9,7 @@
         </li>
         <br>
         <li>
-            作品說明: 使用Spring Boot框架 + Thymeleaf模板引擎 + MySql做的線上課程網站，已將網站部屬到AWS EC2 Server上
+            作品說明: 使用Spring Boot框架 + Thymeleaf模板引擎 + MySQL做的線上課程網站，已將網站部屬到AWS EC2 Server上
         </li>
         <br>
         <li>
