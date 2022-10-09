@@ -1,7 +1,9 @@
 package com.brian.springboot.ecommerceproject.aop;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -40,7 +42,7 @@ public class LoggingAspect {
 	}
 
 	@Before("forAppFlow()")
-	public void beforeForAll(JoinPoint joinPoint) {
+	public void before(JoinPoint joinPoint) {
 
 		String theMethod = joinPoint.getSignature().toShortString();
 		myLogeer.info("=======> in @Before: calling method: " + theMethod);
@@ -51,13 +53,29 @@ public class LoggingAspect {
 		}
 		myLogeer.info("\n");
 	}
+	
+	@Around("forAppFlow()")
+	public void around(ProceedingJoinPoint joinPoint) throws Throwable {
 
-	@AfterReturning(pointcut = "forAppFlow()", returning = "result")
-	public void afterReturning(JoinPoint joinPoint, Object result) {
 		String theMethod = joinPoint.getSignature().toShortString();
-		myLogeer.info("=======> in @AfterReturning: calling method: " + theMethod);
+		myLogeer.info("=======> Executing: @Around on method: " + theMethod);
+		
+		long begin = System.currentTimeMillis();
+		
+		Object proceed = joinPoint.proceed();
+		
+		long end = System.currentTimeMillis();
+		
+		long duration = end - begin;
+		
+		System.out.println("\n======> Duration: " + duration /1000.0 + "seconds");
+	}
 
-		myLogeer.info("=======> result: " + result);
+	@After("forAppFlow()")
+	public void after(JoinPoint joinPoint) {
+		String theMethod = joinPoint.getSignature().toShortString();
+		myLogeer.info("=======> in @After: calling method: " + theMethod);
+
 		myLogeer.info("\n");
 	}
 
